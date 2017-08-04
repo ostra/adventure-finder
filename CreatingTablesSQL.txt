@@ -1,0 +1,126 @@
+DROP TABLE Country;
+CREATE TABLE Country (
+	CountryID int(10) NOT NULL PRIMARY KEY UNIQUE,
+	Name varchar(100) UNIQUE
+);
+
+DROP TABLE Region;
+CREATE TABLE Region (
+	RegionID int(10) NOT NULL PRIMARY KEY UNIQUE,
+	Name varchar(200) UNIQUE,
+	CountryID int(10) FOREIGN KEY REFERENCES Country(CountryID) NOT NULL,
+	Rank int(3) NOT NULL
+);
+
+DROP TABLE Location;
+CREATE TABLE Location (
+	LocationID int(10) NOT NULL PRIMARY KEY UNIQUE,
+	Name varchar(100) NOT NULL UNIQUE,
+	Longitude NOT NULL,
+	Latitude NOT NULL,
+	Description varchar(500),
+	RegionID int(10) FOREIGN KEY REFERENCES Region(RegionID) NOT NULL,
+	Rank int(3) NOT NULL
+);
+
+DROP TABLE Event;
+CREATE TABLE Event(
+	EventID int(10) NOT NULL PRIMARY KEY,
+	Name varchar(150) NOT NULL UNIQUE,
+	Description varchar(500),
+	Stars datetime,
+	End datetime,
+	LocationID int(10) FOREIGN KEY REFERENCES Location(LocationID) NOT NULL,
+	Rank int(3) NOT NULL
+);
+
+DROP TABLE Opinion;
+CREATE TABLE (
+	OpinionID int(10) NOT NULL PRIMARY KEY,
+	Text varchar(1000) NOT NULL,
+	CreatedAt datetime NOT NULL,
+	UserID int(10) FOREIGN KEY REFERENCES User(UserID),
+	EventID int(10) FOREIGN KEY REFERENCES Event(EventID),
+	RegionID int(10) FOREIGN KEY REFERENCES Region(RegionID),
+	LocationID int(10) FOREIGN KEY REFERENCES Location(LocationID),
+	WriterID int(10) FOREIGN KEY REFERENCES User(UserID) NOT NULL
+);
+
+DROP TABLE ContentItem;
+CREATE TABLE (
+	ContentItemID int(10) NOT NULL PRIMARY KEY,
+	Link varchar(150) NOT NULL,
+	CreatedAt datetime NOT NULL,
+	UserID int(10) FOREIGN KEY REFERENCES User(UserID),
+	LocationID int(10) FOREIGN KEY REFERENCES Location(LocationID),
+	EventID int(10) FOREIGN KEY REFERENCES Event(EventID)
+);
+
+DROP TABLE Activity;
+CREATE TABLE (
+	ActivityID int(10) NOT NULL PRIMARY KEY,
+	Name varchar(70) NOT NULL UNIQUE
+);
+
+DROP TABLE User;
+CREATE TABLE User(
+	UserID int(10) NOT NULL PRIMARY KEY,
+	Name varchar(70), 
+	Surname varchar(70),
+	UserName varchar(50) NOT NULL UNIQUE,
+	Password varchar(60) NOT NULL,
+	InstagramLink varchar(150),
+	FacebookLink varchar(150),
+	YouTubeLink varchar(150),
+	Male bit DEFAULT 1,
+	BirthDate datetime,
+	AvatarLink varchar(150),
+	Bio varchar(1000),
+	Commercial bit NOT NULL DEFAULT 0,
+	Rank int(3) NOT NULL
+);
+
+DROP TABLE Visit;
+CREATE TABLE Visit(
+	VisitID int(10) NOT NULL PRIMARY KEY,
+	Start datetime,
+	End datetime,
+	Status varchar(50) NOT NULL
+	UserID int(10) FOREIGN KEY REFERENCES User(UserID) NOT NULL
+);
+
+DROP TABLE SimpleMessage;
+CREATE TABLE SimpleMessage(
+	SimpleMessageID int(10) NOT NULL PRIMARY KEY,
+	Text varchar(1000) NOT NULL,
+	CreatedAt datetime NOT NULL,
+	SenderID int(10) FOREIGN KEY REFERENCES User(UserID) NOT NULL,
+	RecieverID int(10) FOREIGN KEY REFERENCES User(UserID) NOT NULL
+);
+
+DROP TABLE GroupMessage;
+CREATE TABLE GroupMessage(
+	GroupMessageID int(10) NOT NULL PRIMARY KEY,
+	Text varchar(1000) NOT NULL,
+	CreatedAt datetime NOT NULL,
+	SenderID int(10) FOREIGN KEY REFERENCES User(UserID) NOT NULL,
+	GroupID int(10) FOREIGN KEY REFERENCES User(UserID) NOT NULL
+);
+
+DROP TABLE Group;
+CREATE TABLE Group(
+	GroupID int(10) NOT NULL PRIMARY KEY,
+	Name varchar(100) NOT NULL UNIQUE,
+	Description varchar(500),
+	AdminID int(10) FOREIGN KEY REFERENCES User(UserID) NOT NULL,
+	CreatedAt datetime NOT NULL,
+	Rank int(3) NOT NULL
+);
+
+DROP TABLE User_Group;
+CREATE TABLE User_Group(
+	UserID FOREIGN KEY REFERENCES User(UserID) NOT NULL,
+	GroupID FOREIGN KEY REFERENCES Group(GroupID) NOT NULL
+	Confirmed bit bit NOT NULL DEFAULT 0,
+	CreatedAt datetime NOT NULL
+);
