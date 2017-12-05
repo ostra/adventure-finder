@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureFinder", "AdventureFinder\AdventureFinder.csproj", "{49D5B07B-810A-4442-997D-6B13CF3E12A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureFinder.Tests", "AdventureFinder.Tests\AdventureFinder.Tests.csproj", "{8D8826F9-D872-4991-8BBB-964EC55F7A7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49D5B07B-810A-4442-997D-6B13CF3E12A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D5B07B-810A-4442-997D-6B13CF3E12A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D5B07B-810A-4442-997D-6B13CF3E12A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D5B07B-810A-4442-997D-6B13CF3E12A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D8826F9-D872-4991-8BBB-964EC55F7A7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D8826F9-D872-4991-8BBB-964EC55F7A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D8826F9-D872-4991-8BBB-964EC55F7A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D8826F9-D872-4991-8BBB-964EC55F7A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC8D7E0A-8317-40FD-B548-5FC5B4C2A1B8}
+	EndGlobalSection
+EndGlobal
